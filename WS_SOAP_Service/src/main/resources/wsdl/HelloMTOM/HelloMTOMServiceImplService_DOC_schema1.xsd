@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://hellomtom.mtom.service.ws.pg.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="uploadImg" nillable="true" type="xs:base64Binary"/>
+
+  <xs:element name="uploadImgResponse" type="xs:boolean"/>
+</xs:schema>
+

@@ -1,0 +1,22 @@
+<?xml version="1.0"  standalone="no"?>
+<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+	<S:Body>
+		<ns2:createUser xmlns:ns2="http://wrap.lit.doc.service.ws.pg.com/">
+			<arg0>pradhap</arg0>
+			<arg1>30</arg1>
+			<arg2>10000.0</arg2>
+		</ns2:createUser>
+	</S:Body>
+</S:Envelope>
+
+<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+	<S:Body>
+		<ns2:createUserResponse xmlns:ns2="http://wrap.lit.doc.service.ws.pg.com/">
+			<return>
+				<age>30</age>
+				<name>pradhap</name>
+				<salary>10000.0</salary>
+			</return>
+		</ns2:createUserResponse>
+	</S:Body>
+</S:Envelope>

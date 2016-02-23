@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<handler-chains xmlns="http://java.sun.com/xml/ns/javaee">
+  <handler-chain>
+    <handler>
+      <handler-name>com.pg.ws.handler.calculator.CalculatorServiceLogHandler</handler-name>
+      <handler-class>com.pg.ws.handler.calculator.CalculatorServiceLogHandler</handler-class>
+    </handler>
+    <handler>
+      <handler-name>com.pg.ws.handler.calculator.CalculatorServiceMsgHandler</handler-name>
+      <handler-class>com.pg.ws.handler.calculator.CalculatorServiceMsgHandler</handler-class>
+    </handler>
+  </handler-chain>
+</handler-chains>

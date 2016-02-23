@@ -3,6 +3,7 @@ package com.pg.ws.client.hellows;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.jws.HandlerChain;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.ws.WebServiceRef;
 
+import com.pg.ws.stub.calculator.CalculatorService;
+import com.pg.ws.stub.calculator.CalculatorServiceImplService;
 import com.pg.ws.stub.hellows.HelloWS;
 import com.pg.ws.stub.hellows.HelloWSService;
 
@@ -30,11 +33,16 @@ public class HelloWSClientServlet extends HttpServlet {
 	}
 	//@WebServiceRef(value=HelloWSService.class,wsdlLocation="http://localhost:8080/WS_SOAP_Servlet/hello?wsdl")
 	//@WebServiceRef(value=HelloWSService.class,wsdlLocation="WEB-INF/classes/wsdl/HelloWS/HelloWS.wsdl")
-	@WebServiceRef(value=HelloWSService.class) //value MUST; type is optional
+	//@WebServiceRef(value=HelloWSService.class) //value MUST; type is optional
+	@WebServiceRef(HelloWSService.class)
 	HelloWS helloWSType_WSRefType;
 	
 	@WebServiceRef(type=HelloWS.class) //value MUST not; type is optional
 	HelloWSService helloSEI_WSRefClass;
+	
+	//@HandlerChain(file="config//calculator-handler-chain.xml")
+	@WebServiceRef
+	CalculatorServiceImplService calculatorSIB;
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -55,12 +63,17 @@ public class HelloWSClientServlet extends HttpServlet {
 		
 		wsRefTypeStr = helloWSType_WSRefType.sayHello("helloWSType_WSRefType");
 		
+		CalculatorService calculatorSEI = calculatorSIB.getCalculatorServiceImplPort();
+		String calcRes = calculatorSEI.squareOf("10");
+		
+		
 		PrintWriter pw = resp.getWriter();
 		pw.print("Hello hellowsclient");
 		pw.print("Web service response.........>");
 		pw.print("stubWSStr: "+stubWSStr+"\n");
 		pw.print("wsRefStr: "+wsRefStr+"\n");
 		pw.print("wsRefTypeStr 2: "+wsRefTypeStr+"\n");
+		pw.print("calcRes "+calcRes+"\n");
 		pw.print("<..........");
 		pw.close();
 

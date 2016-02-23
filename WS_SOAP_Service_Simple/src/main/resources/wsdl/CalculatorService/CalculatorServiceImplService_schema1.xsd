@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://calculator.demo.service.ws.pg.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="convertToBinary" nillable="true" type="xs:string"/>
+
+  <xs:element name="convertToBinaryResponse" nillable="true" type="xs:string"/>
+
+  <xs:element name="convertToHex" nillable="true" type="xs:string"/>
+
+  <xs:element name="convertToHexResponse" nillable="true" type="xs:string"/>
+
+  <xs:element name="squareOf" nillable="true" type="xs:string"/>
+
+  <xs:element name="squareOfResponse" nillable="true" type="xs:string"/>
+
+  <xs:element name="squareRootOf" nillable="true" type="xs:string"/>
+
+  <xs:element name="squareRootOfResponse" nillable="true" type="xs:string"/>
+</xs:schema>
+

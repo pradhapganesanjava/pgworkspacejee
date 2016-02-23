@@ -1,0 +1,20 @@
+<?xml version="1.0"  standalone="no"?>
+<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+	<S:Body>
+		<ns2:updateUserDetailsInOut xmlns:ns2="http://bare.lit.doc.service.ws.pg.com/">
+			<age>22</age>
+			<name>Pradhap</name>
+		</ns2:updateUserDetailsInOut>
+	</S:Body>
+</S:Envelope>
+
+<?xml version="1.0"  standalone="no"?>
+<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+	<S:Body>
+		<ns2:updateUserDetailsInOutResponse
+			xmlns:ns2="http://bare.lit.doc.service.ws.pg.com/">
+			<age>22</age>
+			<name>Pradhap</name>
+		</ns2:updateUserDetailsInOutResponse>
+	</S:Body>
+</S:Envelope>
