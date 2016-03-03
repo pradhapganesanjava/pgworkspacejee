@@ -1,0 +1,20 @@
+<soap:Body xmlns:ns1='http://example'>
+	<ns1:compare>
+		<e:book>
+			<title>SCDJWS 5.0 Guide</title>
+			<author href="#mz" />
+		</e:book>
+		<e:book>
+			<title>OCE WSD 6 Guide</title>
+			<author href="#mz" />
+		</e:book>
+	</ns1:compare>
+	<ns1:author id="mz">
+		<name>
+			<fistName>
+				Mikalai
+			</firstName>
+				<lastName>Zaikin</lastName>
+		</name>
+	</ns1:author>
+</soap:Body>

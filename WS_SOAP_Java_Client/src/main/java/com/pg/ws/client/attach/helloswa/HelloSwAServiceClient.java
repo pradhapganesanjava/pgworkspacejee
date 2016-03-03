@@ -1,13 +1,17 @@
 package com.pg.ws.client.attach.helloswa;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 
+import javax.activation.DataHandler;
 import javax.xml.namespace.QName;
+import javax.xml.soap.AttachmentPart;
 import javax.xml.soap.MessageFactory;
 import javax.xml.soap.SOAPBody;
 import javax.xml.soap.SOAPBodyElement;
 import javax.xml.soap.SOAPConstants;
 import javax.xml.soap.SOAPElement;
+import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPMessage;
 import javax.xml.ws.BindingProvider;
 import javax.xml.ws.Dispatch;
@@ -42,10 +46,44 @@ public class HelloSwAServiceClient {
 		SOAPElement bodyChildElm = bodyElm.addChildElement(new QName(namespaceURI, "test", "swa"));
 		bodyChildElm.addTextNode("test swa");
 		soapMsg.saveChanges();
+
+		//set AttachmentPart
+		//imageAttachment(url, msgFact);
+
+		//get AttachmentPart
+		//accessingImageAttachment(msgFact);
+		
 		
 		dispatch.invoke(soapMsg);
 		
 
+	}
+
+	private static void accessingImageAttachment(MessageFactory msgFact)
+			throws SOAPException {
+		SOAPMessage message = msgFact.createMessage();
+		java.util.Iterator iterator = message.getAttachments();
+		while (iterator.hasNext()) {
+		    AttachmentPart attachment = (AttachmentPart)iterator.next();
+		    String id = attachment.getContentId();
+		    String type = attachment.getContentType();
+		    System.out.print("Attachment " + id + " has content type " + type);
+		    if (type.equals("text/plain")) {
+		        Object content = attachment.getContent();
+		        System.out.println("Attachment contains:\n" + content);
+		    }
+		}
+	}
+
+	private static void imageAttachment(URL url, MessageFactory msgFact)
+			throws SOAPException, MalformedURLException {
+		SOAPMessage message = msgFact.createMessage();
+		URL imgUrl = new URL("http://greatproducts.com/gizmos/img.jpg");
+		DataHandler dataHandler = new DataHandler(url);
+		AttachmentPart attachment = message.createAttachmentPart(dataHandler);
+		attachment.setContentId("attached_image");
+
+		message.addAttachmentPart(attachment);
 	}
 
 }

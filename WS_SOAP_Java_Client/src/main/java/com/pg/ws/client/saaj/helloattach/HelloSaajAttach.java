@@ -1,6 +1,7 @@
 package com.pg.ws.client.saaj.helloattach;
 
 import javax.xml.namespace.QName;
+import javax.xml.soap.AttachmentPart;
 import javax.xml.soap.MessageFactory;
 import javax.xml.soap.SOAPBody;
 import javax.xml.soap.SOAPBodyElement;
@@ -20,11 +21,27 @@ public class HelloSaajAttach {
 		SOAPConnectionFactory connFact = SOAPConnectionFactory.newInstance();
 		SOAPConnection soapCon = connFact.createConnection();
 		SOAPMessage soapMsgReq = creatSOAPMessageReq();
-		java.net.URL url = new java.net.URL("http://localhost:5556/helloswaservice/HelloSwAServiceService");
+		
+		addAttachmentPart(soapMsgReq);
+		
+		//java.net.URL url = new java.net.URL("http://localhost:7777/helloswaservice/HelloSwAServiceService");
 
+		java.net.URL url = new java.net.URL("http://localhost:7777/helloswapayloadservice/HelloSwAPayloadServiceService");
+							// http://localhost:5559/helloswapayloadservice/HelloSwAPayloadServiceService
+		
 		soapCon.call(soapMsgReq, url);
 		
 		soapCon.close();
+		
+	}
+
+	private static void addAttachmentPart(SOAPMessage soapMsgReq) {
+		AttachmentPart attachPart = soapMsgReq.createAttachmentPart();
+		attachPart.setMimeHeader("Content-Type","application/xml");
+		//attachPart.setContentType("text/plain");
+		attachPart.setContent("content IS PART OF ATTACHMENT", "text/plain");
+		attachPart.setContentId("test attach contentId");
+		soapMsgReq.addAttachmentPart(attachPart);
 		
 	}
 

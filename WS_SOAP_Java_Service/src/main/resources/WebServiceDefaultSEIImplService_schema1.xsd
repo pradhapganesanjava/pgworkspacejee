@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://sei.webserviceref.service.ws.pg.com/" xmlns:tns="http://sei.webserviceref.service.ws.pg.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="oneWayMth" type="tns:oneWayMth"/>
+
+  <xs:element name="oneWayMthResponse" type="tns:oneWayMthResponse"/>
+
+  <xs:complexType name="oneWayMth">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="oneWayMthResponse">
+    <xs:sequence/>
+  </xs:complexType>
+</xs:schema>
+

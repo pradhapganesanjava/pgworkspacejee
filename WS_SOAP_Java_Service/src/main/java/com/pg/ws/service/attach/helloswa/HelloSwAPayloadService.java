@@ -2,7 +2,7 @@ package com.pg.ws.service.attach.helloswa;
 
 import java.util.Iterator;
 
-import javax.activation.DataHandler;
+import javax.annotation.Resource;
 import javax.xml.soap.AttachmentPart;
 import javax.xml.soap.Name;
 import javax.xml.soap.SOAPBodyElement;
@@ -11,32 +11,34 @@ import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPFactory;
 import javax.xml.soap.SOAPHeaderElement;
 import javax.xml.soap.SOAPMessage;
+import javax.xml.transform.Source;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
 import javax.xml.ws.Provider;
 import javax.xml.ws.Service.Mode;
 import javax.xml.ws.ServiceMode;
+import javax.xml.ws.WebServiceContext;
 import javax.xml.ws.WebServiceProvider;
 
 import com.pg.ws.service.util.EndpointPublisher;
 
 @WebServiceProvider
-@ServiceMode(Mode.MESSAGE)
-public class HelloSwAService implements Provider<SOAPMessage> {
+@ServiceMode(Mode.PAYLOAD)
+public class HelloSwAPayloadService implements Provider<Source> {
 
-	private final static String PORT_PUBLISH = "5556";
+	@Resource
+	WebServiceContext webSrvCntx;
+	
+	private final static String PORT_PUBLISH = "5559";
 	
 	@Override
-	public SOAPMessage invoke(SOAPMessage request) {
+	public Source invoke(Source request) {
 
-		System.out.println("HelloSwA Invoke is called 2");
+		System.out.println("HelloSwAPayloadService Invoke is called");
+		System.out.println("WebServiceContext "+webSrvCntx);
 		
-		printSOAPBodyRequest(request);
+		TransformerFactory transFact = TransformerFactory.newInstance();
 		
-		updateHeader(request);
-		
-		while(request.getAttachments().hasNext()){
-			AttachmentPart attPart = (AttachmentPart)request.getAttachments().next();
-			System.out.println(" get attachment contentId "+ attPart.getContentId());
-		}
 
 		return request;
 	}
@@ -54,8 +56,6 @@ public class HelloSwAService implements Provider<SOAPMessage> {
 			headElm.addChildElement(headChildName1).addTextNode("1/1/2016");
 			headElm.addChildElement(headChildName2).addTextNode("1.0");
 			
-			
-			request.createAttachmentPart()
 			
 		} catch (SOAPException e) {
 			e.printStackTrace();
@@ -93,7 +93,7 @@ public class HelloSwAService implements Provider<SOAPMessage> {
 	}
 
 	public static void main(String...str){
-		EndpointPublisher.main(PORT_PUBLISH,"/helloswaservice","com.pg.ws.service.attach.helloswa.HelloSwAService");
+		EndpointPublisher.main(PORT_PUBLISH,"/helloswapayloadservice","com.pg.ws.service.attach.helloswa.HelloSwAPayloadService");
 	}
 	
 }

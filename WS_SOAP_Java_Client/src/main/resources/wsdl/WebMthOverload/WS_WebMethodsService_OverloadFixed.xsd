@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. 
+	RI's version is JAX-WS RI 2.1.6 in JDK 6. -->
+<xs:schema xmlns:tns="http://webmethod.service.ws.pg.com/"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0"
+	targetNamespace="http://webmethod.service.ws.pg.com/">
+
+	<xs:element name="publicMth" type="tns:publicMth"></xs:element>
+
+	<xs:element name="publicMthOverloaded" type="tns:publicMthOverloaded"></xs:element>
+
+	<xs:element name="publicMthOverloadedResponse" type="tns:publicMthOverloadedResponse"></xs:element>
+
+	<xs:element name="publicMthResponse" type="tns:publicMthResponse"></xs:element>
+
+	<xs:complexType name="publicMthOverloaded">
+		<xs:sequence>
+			<xs:element name="arg0" type="xs:string" minOccurs="0"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="publicMthOverloadedResponse">
+		<xs:sequence></xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="publicMth">
+		<xs:sequence></xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="publicMthResponse">
+		<xs:sequence></xs:sequence>
+	</xs:complexType>
+</xs:schema>
