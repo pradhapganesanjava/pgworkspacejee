@@ -1,0 +1,30 @@
+<html ng-app="myApp">
+
+<head>
+<script src="angular.js"></script>
+<script>
+	console.log('angular inbuild obj' + angular);
+
+	//create new module
+	var module = angular.module('myApp', []);
+	//register controller into the module
+	module.controller('first_controller', firstController);
+
+	//Angular module is created
+	function firstController($scope) {
+		$scope.range = 800;
+		console.log('controller invoked');
+	}
+</script>
+
+</head>
+
+<body ng-controller="first_controller">
+	<h3>HELLO GUEST</h3>
+	<h3 ng-if="range > 200 && range <400">Not Ok Salary</h3>
+	<h3 ng-if="range > 400 && range <=500">Ok Salary</h3>
+	<h3 ng-if="range > 500 && range <=700">Avg Salary</h3>
+	<h3 ng-if="range > 700 && range <1000">Above Avg Salary</h3>
+</body>
+
+</html>

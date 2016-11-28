@@ -1,0 +1,56 @@
+<html ng-app="clockApp">
+
+<head>
+<script src="angular.js"></script>
+<script>
+	console.log("angular obj" + angular);
+	//create module
+	var clockAppModule = angular.module("clockApp", []);
+	//register controller
+	clockAppModule.controller("cntrl_clock", giveTime);
+
+	function giveTime($scope) {
+		console.log("cntrl called ")
+		var currDate = new Date();
+		var currTime = currDate.toTimeString();
+		$scope.curr_time = currTime;
+
+		$scope.refreshTime = function() {
+			var currDate = new Date();
+			var currTime = currDate.toTimeString();
+			$scope.curr_time = currTime;
+		}
+		$scope.transUpEngTxt = function() {
+			$scope.engTxt_UP = $scope.engTxt.toUpperCase();
+		}
+	}
+</script>
+</head>
+
+
+<body>
+	<div ng-controller="cntrl_clock">
+		<br />
+		<hr>
+		<h1>CLOCK APP</h1>
+		<hr>
+		<H2>Current time : {{curr_time}}</h2>
+		<p ng-bind="curr_time"></p>
+		<button ng-click="refreshTime()">Refresh</button>
+		<hr>
+		<p>English :</p>
+		<input type="text" ng-change="transUpEngTxt()" ng-model="engTxt" />
+		<p>Upper Case:{{engTxt_UP}}</p>
+
+		<!-- <p ng-bind="engTxt"> -->
+	</div>
+	<hr>
+	<div ng-controller="cntrl_clock">
+		<p ng-bind="curr_time"></p>
+		<input type="submit" value="input refresh" ng-click="refreshTime()" name="refresh" />
+	</div>
+</body>
+
+
+
+</html>

@@ -1,0 +1,26 @@
+<html ng-app="calcApp">
+
+<head>
+<script src="angular.js"></script>
+<script>
+	var appMod = angular.module("calcApp", []);
+	appMod.controller("cntrl_div_1", cntrlDiv1Impl);
+	appMod.controller("cntrl_tab_1", cntrlTab1Impl);
+	function cntrlDiv1Impl() {
+		console.log("controller called");
+	}
+
+	function cntrlTab1Impl() {
+		console.log("cntrlTab1Impl ");
+	}
+</script>
+</head>
+
+<body>
+	<h1>CALC APP</h1>
+	<table ng-controller="cntrl_tab_1">
+	</table>
+</body>
+
+
+</html>

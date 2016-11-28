@@ -1,0 +1,22 @@
+<html ng-app="app_ng_bind">
+<head>
+<script src="angular.js"></script>
+<script>
+	var module = angular.module("app_ng_bind",[]);
+	module.controller("cntrl_ng_bind",func_ng_bind);
+	
+	function func_ng_bind($scope){
+		console.log(''+new Date().toTimeString());
+		$scope.curr_time = new Date().toTimeString();
+	}
+</script>
+</head>
+<body>
+	<div ng-controller="cntrl_ng_bind">
+		<hr>
+		<label>Current Local Time: </label>
+		<span ng-bind="curr_time"></span>
+		<hr>
+	</div>
+</body>
+</html>

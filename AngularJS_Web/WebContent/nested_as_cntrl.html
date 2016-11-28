@@ -1,0 +1,46 @@
+<html ng-app="nested_cntrl_app">
+<head>
+<script src="angular.js"></script>
+<script>
+  var appModule = angular.module("nested_cntrl_app",[]);  
+  appModule.controller("cntrl_1",cntrl_1_func);
+  appModule.controller("cntrl_2",cntrl_2_func);
+
+  /*
+  function cntrl_1_func($scope){
+      $scope.cntrl_text = "Cntrl One ng_bind";
+  }
+  function cntrl_2_func($scope){
+      //$scope.cntrl_text = "Cntrl Two ng_bind";
+  } */
+
+  function cntrl_1_func(){
+      this.cntrl_text = "Cntrl One ng_bind";
+  }
+  function cntrl_2_func(){
+      this.cntrl_text = "Cntrl Two ng_bind";
+  }
+</script>
+</head>
+<body>
+    <div ng-controller="cntrl_1 as alias">
+        <h1>cntrl_1 div</h1>
+        <h3><p ng-bind="alias.cntrl_text"></p></h3>
+    </div>
+    <hr>
+    <div ng-controller="cntrl_2 as alias2">
+        <h1>cntrl_2 div</h1>
+        <h3 ng-bind="alias2.cntrl_text"></h3>
+    </div>
+    <hr>
+    <div ng-controller="cntrl_1 as c1">
+        <h1>cntrl_2 nested in cntrl_1 div</h1>
+        <h3 ng-bind="c1.cntrl_text"></h3>
+
+        <div ng-controller="cntrl_2 as c2">
+            <h1>nested cntrl_2 div</h1>
+            <h3 ng-bind="c2.cntrl_text"></h3>
+        </div>
+    </div>
+</body>
+</html>

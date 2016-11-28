@@ -1,0 +1,24 @@
+<html ng-app="app_ng_change">
+<head>
+<script src="angular.js"></script>
+<script>
+	var module = angular.module("app_ng_change",[]);
+	module.controller("cntrl_ng_change",func_ng_change);
+	
+	function func_ng_change($scope){
+		$scope.handleInputTxt = function(){
+			$scope.input_txt_up = $scope.input_txt.toUpperCase();			
+		}
+	}
+</script>
+</head>
+<body>
+	<div ng-controller="cntrl_ng_change">
+		<label>Enter lower case:</label>
+		<input type="text" name="input_txt" ng-model="input_txt" ng-change="handleInputTxt()"/>
+		<hr>
+		<label>Entered Upper case:</label>
+		<textarea ng-bind="input_txt_up" rows="4" cols="50" maxlength="80" readonly="readonly"/>
+	</div>
+</body>
+</html>

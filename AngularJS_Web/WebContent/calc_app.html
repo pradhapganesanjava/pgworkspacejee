@@ -1,0 +1,74 @@
+<html ng-app="calc_app">
+    <head>
+        <script src="angular.js"></script>
+        <script>
+            var calc_app_module = angular.module("calc_app",[]);
+            calc_app_module.controller("calc_app_cntrl",calcApp);
+
+           function calcApp(){
+                console.log("controlled");
+
+                this.input1Validate = function(){
+                	this.input1 = allowOnlyNum(this.input1);
+                }
+                
+                this.input2Validate = function(){
+                	this.input2 = allowOnlyNum(this.input2);                	
+                }
+
+                function allowOnlyNum(inputObj){
+                    if(null != inputObj && '' != inputObj && undefined != inputObj){
+                    	return inputObj.replace(/[^\d.]/g,'');
+                    }
+                    return inputObj;
+                }
+                
+                this.setOperartion = function(operation){
+                	this.selOperation = operation;
+                	if('+' == this.selOperation){
+                		this.output = Number(this.input1) + Number(this.input2);
+                	}else if('-' == this.selOperation){
+                		this.output = this.input1 - this.input2;
+                	}else if('*' == this.selOperation){
+                		this.output = this.input1 * this.input2;
+                	}else if('/' == this.selOperation){
+                		this.output = this.input1 / this.input2;
+                	}
+                }
+            }
+
+        </script>
+    </head>
+    <body>
+        <h1>CALCULATOR APP</h1>
+        <HR>
+        <table ng-controller="calc_app_cntrl as c1" ng-init="opr">
+            <tr>
+                <td><label for="input1">Input : </label></td>
+                <td><span>&nbsp;&nbsp;</span></td>
+                <td><input type="text" name="input1" id="input1" ng-model="c1.input1" ng-change="c1.input1Validate()"/></td>
+            </tr>
+            <tr>    
+                <td><span>&nbsp;&nbsp;</span></td>
+                <td><p ng-bind="c1.selOperation"></p></td>
+                <td><span>&nbsp;&nbsp;</span></td>        
+            </tr>
+            <tr>    
+                <td><label for="input2">Input : </label></td>
+                <td><span>&nbsp;&nbsp;</span></td>
+                <td><input type="text" name="input2" id="input2" ng-model="c1.input2" ng-change="c1.input2Validate()"/></td>        
+            </tr> 
+            <hr>       
+            <tr>    
+                <td>
+                    <input type="button" name="operation" value="+" ng-click="c1.setOperartion('+')"/>
+                    <input type="button" name="operation" value="-" ng-click="c1.setOperartion('-')"/>
+                    <input type="button" name="operation" value="*" ng-click="c1.setOperartion('*')"/>
+                    <input type="button" name="operation" value="/" ng-click="c1.setOperartion('/')"/>
+                </td>
+                <td><span>&nbsp;=&nbsp;</span></td>
+                <td><input type="text" name="output" id="output" disabled value="{{c1.output}}"/></td>        
+            </tr>  
+        </table>    
+    </body>
+</html>
