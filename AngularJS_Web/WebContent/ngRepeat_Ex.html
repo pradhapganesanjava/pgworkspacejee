@@ -1,0 +1,44 @@
+<html ng-app="ngrepeat_app">
+<head>
+
+<script src="angular.js"></script>
+<script>
+	var module = angular.module("ngrepeat_app", []);
+	module.controller("ngrepeat_cntrl", ngrepeatCntrlImpl);
+
+	function ngrepeatCntrlImpl($scope) {
+		console.log("ngrepeat test");
+		
+		var empArr = [{'EMP_ID':1001,'EMP_NAME':'PG1','JOIN_DATE':'01/01/2006'},
+		              {'EMP_ID':1002,'EMP_NAME':'PG2','JOIN_DATE':'01/01/2007'},
+		              {'EMP_ID':1003,'EMP_NAME':'PG3','JOIN_DATE':'01/01/2009'},
+		              {'EMP_ID':1004,'EMP_NAME':'PG4','JOIN_DATE':'01/01/2010'},
+		              {'EMP_ID':1005,'EMP_NAME':'PG5','JOIN_DATE':'01/01/2011'}
+		             ]
+
+		$scope.empList = empArr;
+
+		for(emp in empArr){
+			console.log(empArr[emp].EMP_ID);
+		}
+	}
+</script>
+</head>
+
+<body ng-controller="ngrepeat_cntrl">
+
+	<table border="1px">
+		<tr>
+			<td>EmpId</td>
+			<td>Name</td>
+			<td>Join Date</td>
+		</tr>
+		<tr ng-repeat="emp in empList">
+			<td>{{emp.EMP_ID}}</td>
+			<td>{{emp.EMP_NAME}}</td>
+			<td>{{emp.JOIN_DATE}}</td>
+		</tr>		
+	</table>
+
+</body>
+</html>
