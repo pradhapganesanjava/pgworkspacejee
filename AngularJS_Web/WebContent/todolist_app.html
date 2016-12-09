@@ -1,0 +1,34 @@
+<html ng-app="todolist_app">
+<head>
+<script src="angular.js"></script>
+<script>
+	var module = angular.module("todolist_app", []);
+	module.controller("todolist_cntrl", todolist_cntrl_impl);
+	function todolist_cntrl_impl() {
+		console.log('todolist_cntrl');
+	}
+</script>
+</head>
+<body ng-controller="todolist_cntrl">
+	<H1>Todo App</H1>
+	<div>
+		<label for="add_todo">Add into Todo list</label> <input name="add_todo" type="text" />
+		<button type="button" name="add_todo_btn" value="add">Add</button>
+	</div>
+
+	<div ng-controller="todolist_cntrl">
+
+		<p>
+			Existing Todo List
+			<button type="button" name="edit_todo_btn" value="edit">Edit</button>
+		</p>
+
+		<ul>
+			<li>a <input type="button" name="del_todo_btn" value="Delete"></li>
+			<li>b <input type="button" name="del_todo_btn" value="Delete"></li>
+			<li>c <input type="button" name="del_todo_btn" value="Delete"></li>
+		</ul>
+
+	</div>
+</body>
+</html>

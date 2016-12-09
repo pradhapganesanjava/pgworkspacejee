@@ -1,0 +1,40 @@
+<html ng-app="mod_ex_app">
+<head>
+<script src="angular.js"></script>
+<script src="./js/modules/module_hello.js"></script>
+<script src="http://mbenford.github.io/ngTagsInput/js/ng-tags-input.min.js"></script>
+<link 	rel="stylesheet" href="http://mbenford.github.io/ngTagsInput/css/ng-tags-input.min.css" />
+
+<script>
+	var module = angular.module("mod_ex_app", [ "import_hello_mod","ngTagsInput" ]);
+	module.controller("self_cntrl", self_cntrl_impl);
+	module.controller("import_3rdparty_mod_cntrl",import_3rdparty_mod_cntrl_impl);
+	
+	function self_cntrl_impl($scope) {
+		$scope.ng_bind_txt1 = "Hi.. This self module";
+	}
+	function import_3rdparty_mod_cntrl_impl($scope){
+		$scope.tags = [{text:'txt1'},{text:'txt2'}];
+	}
+</script>
+<style>
+.tags{
+height:10% !important;
+}
+</style>
+</head>
+<body>
+
+	<div ng-controller="self_cntrl">
+		<p ng-bind="ng_bind_txt1" />
+	</div>
+
+	<div ng-controller="import_hello_mod_cntrl">
+		<p ng-bind="import_hello_mod_ngbind_txt1" />
+	</div>
+
+	<div ng-controller="import_3rdparty_mod_cntrl">
+		<tags-input ng-model="tags"></tags-input>
+	</div>
+</body>
+</html>
