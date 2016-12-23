@@ -6,27 +6,79 @@
 	module.controller("todolist_cntrl", todolist_cntrl_impl);
 	function todolist_cntrl_impl() {
 		console.log('todolist_cntrl');
+
+		this.todo_list = [ {
+			desc : 'Getup 5am'
+		}, {
+			desc : 'DS 6am to 7am'
+		}, {
+			desc : '10.15am office'
+		} ];
+
+		this.deleteTodoItem = function(indVal) {
+			console.log("delete this " + indVal);
+			console.log("this " + this.todo_list[indVal].desc)
+
+			for (todoItem in this.todo_list) {
+				if (String(indVal) == todoItem) {
+					this.todo_list.splice(todoItem, 1);
+				}
+			}
+		};
+		
+		this.addTodoItem = function(){
+			if(this.add_todo == undefined || this.add_todo == null || this.add_todo == ""){
+				return;
+			}
+			console.log("add_todo "+this.add_todo)
+			new_todo_item = {desc:this.add_todo};
+			this.todo_list.push(new_todo_item);
+		}
+		
+		this.editTodoList = function(){
+			console.log(this.editMode)
+			this.editMode = true;
+			
+			for (todoItem in this.todo_list) {
+
+			}
+			
+		}
+		
+		this.saveTodoList = function(){
+			this.editMode = false;
+		}
 	}
 </script>
 </head>
-<body ng-controller="todolist_cntrl">
-	<H1>Todo App</H1>
-	<div>
-		<label for="add_todo">Add into Todo list</label> <input name="add_todo" type="text" />
-		<button type="button" name="add_todo_btn" value="add">Add</button>
-	</div>
+<body>
 
-	<div ng-controller="todolist_cntrl">
+	<div ng-controller="todolist_cntrl as c1" ng-init="c1.editMode=false">
+
+		<H1>Todo App</H1>
+		<div>
+			<label for="add_todo">Add into Todo list</label> 
+			<input name="add_todo" type="text" ng-model="c1.add_todo"/>
+			<button type="button" name="add_todo_btn" value="add" ng-click="c1.addTodoItem()">Add</button>
+		</div>
 
 		<p>
 			Existing Todo List
-			<button type="button" name="edit_todo_btn" value="edit">Edit</button>
+			<span ng-if="c1.editMode==false">
+			<button type="button" name="edit_todo_btn" value="edit" ng-click="c1.editTodoList()">Edit</button>
+			</span>
+			<span ng-if="c1.editMode==true">
+			<button type="button" name="save_todo_btn" value="Save" ng-click="c1.saveTodoList()">Save</button>
+			</span>
 		</p>
 
 		<ul>
-			<li>a <input type="button" name="del_todo_btn" value="Delete"></li>
-			<li>b <input type="button" name="del_todo_btn" value="Delete"></li>
-			<li>c <input type="button" name="del_todo_btn" value="Delete"></li>
+			<li ng-repeat="todo_item in c1.todo_list" ng-model="todo_item_index">
+				<span ng-if="c1.editMode==false">{{todo_item.desc}}&nbsp;
+				<input type="button" name="del_todo_btn" value="Delete" ng-click="c1.deleteTodoItem($index)">
+				</span><!-- value="{{todo_item.desc}}" --> 
+				<span ng-if="c1.editMode==true"><input name="edit_todo_item" type="text" ng-model="todo_item.desc"/></span>
+			</li>
 		</ul>
 
 	</div>
