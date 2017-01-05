@@ -1,0 +1,19 @@
+<html ng-app="contactApp">
+<head>
+    <script src="../angular.js"></script>
+    <script>
+        console.log(angular);
+        contactAppMod = angular.module("contactApp",[]);
+        contactAppMod.controller("initCntrl",initCntrlImpl);
+        function initCntrlImpl(){
+            console.log('initialized ');
+        }
+    </script>
+</head>
+
+<body ng-controller="initCntrl">
+
+    <h1>HELLO WORLD !!!</h1>
+</body>
+
+</html>
