@@ -1,0 +1,55 @@
+<html ng-app="myRouteApp">
+    <head>
+        <script src="../lib_js/angular.js"></SCRIPT>
+        <script src="../lib_js/angular-route.js"></SCRIPT>
+        <script type="text/javascript">
+            var ngMod = angular.module("myRouteApp" ,['ngRoute'])
+                                    .config( function($routeProvider){
+                                            $routeProvider 
+                                                .when("/home", {
+                                                    template : 'Home Page'})
+                                                .when('/page1',{
+                                                    template : "Page One"})
+                                                .when('/page2',{
+                                                    template : "Page Two"}) })
+        </script>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <td></td>
+                <td>NG ROUTE EXAMPLE</td>
+                <td></td>    
+            </tr>
+            <tr>
+                <td>
+                    <ul>
+<li><a href="#!home">Home</a></li>
+<li><a href="#!page1">Page_1</a></li>
+<li><a href="#!page2">Page_2</a></li>
+                    </ul>
+                </td>
+                <td ng-view></td>
+                <td>dummy</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><hr/></td>
+                <td></td>
+            </tr>
+        </table>
+    </body>
+</html>
+<style type="text/css">
+    td{
+        padding:5px;
+        border:solid 1px;
+    }
+    tr{
+        padding:3px;
+        border:solid 1px;
+    }
+    table{
+        border:solid 1px;
+    }
+   </style>

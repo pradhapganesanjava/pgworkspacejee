@@ -1,0 +1,63 @@
+<html ng-app="strProcessSrvApp">
+    <head>
+       <script src="../lib_js/angular.js"></SCRIPT>
+        <script>
+                strProcessSrvMod = angular.module("strProcessSrvApp",[])
+                                            .factory("strProcessSrv",strProcessSrv)
+                                            .controller("strProcessSrvCntrl",strProcessSrvCntrl);
+                
+                function strProcessSrvCntrl ($scope,strProcessSrv,countCapsStrProcessSrv){
+                    $scope.strInputPh = "Enter String";
+                    $scope.callStrProcessSrv = function(strInput){
+                            $scope.strOutput = strProcessSrv.strSpaceInjecter(strInput)
+                        };
+
+                    $scope.countCapsStrProcessFunc = function(strInput){
+                        $scope.countCaps = countCapsStrProcessSrv.countCapsSrv(strInput);
+                    }
+                 }
+function strProcessSrv(){
+    return {
+            strSpaceInjecter : function(strInput){
+                                if(!strInput) {  return; }
+                                    output = strInput[0];
+                                    for(i =1; i< strInput.length;i++){
+                                        if(strInput[i]===strInput[i].toUpperCase()){
+                                            output += ' ';
+                                        }
+                                        output += strInput[i];
+                                    }
+                                    return output;
+                                }
+        
+    }
+};
+        </script>
+        <script src="stringProcessServ.js"></SCRIPT>
+
+    </head>
+    <body ng-controller="strProcessSrvCntrl">
+        <div>
+            <table>
+                <tr>
+                    <td>Enter Strings to process:</td>
+                    <td>
+                        <input type="text" placeholder="{{strInputPh}}" ng-model="strInput"/>
+                    </td>
+                    <td>Caps Count: {{countCaps}}</td>
+                </tr>
+                <tr>
+                    <td>Processed String:</td>
+                    <td>{{strOutput}}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="button" value="Inject Space" ng-click="callStrProcessSrv(strInput)"/></td>
+                    <td><input type="button" value="Count Caps" ng-click="countCapsStrProcessFunc(strInput)"/></td>
+                </tr>
+            </table>
+        </div>
+
+    </body>
+</html>

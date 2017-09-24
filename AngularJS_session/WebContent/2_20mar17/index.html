@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+  <head>
+    <script data-require="angular.js@1.5.8" data-semver="1.5.8" src="https://code.angularjs.org/1.5.8/angular.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+  </head>
+
+  <body ng-controller="hellocntrl">
+    <h1>Hello Plunker!</h1>
+    
+    <input type="text" ng-model="fname" />
+    <input type="text" ng-model="lname" />
+    <div>
+      {{fname}},{{lname}}
+    </div>
+    
+    <div ng-controller="statecntrl">
+      
+      <ul>
+        <li ng-repeat="state in data"><a href="#" ng-click="delState(state)">{{state}}</a></li>
+      </ul>
+      
+      <input type="text" ng-model="newstate" /> <br/>
+      <input type="button" value="Add" ng-click="addState()" />
+      
+    </div>
+    
+    
+    
+  </body>
+
+
+</html>

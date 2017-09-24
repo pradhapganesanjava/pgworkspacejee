@@ -1,0 +1,26 @@
+<html ng-app="uiRouterApp">
+        <head>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.js"></script>
+            <script type="text/javascript">
+                var mod = angular.module("uiRouterApp",['ui.router']);
+                mod.config(['$stateProvider',function($stateProvider){
+                    $stateProvider
+                        .state('landExistCustomer',
+                        {
+                            url : "#/existCustomer",
+                            template: "<b>Hi UI-NG</b>{{name}}",
+                            controller: landExistCustomerCtrl
+                        })
+                }]);
+                $locationProvider.html5Mode(true);
+                function landExistCustomerCtrl($scope){
+                    $scope.name="Pradhap";
+                }
+            </script>
+        </head>
+        <body>
+            <a href="#/existCustomer">Goto ExistCustomer</a><br>
+            <div ui-view></div>
+        </body>
+    </html>

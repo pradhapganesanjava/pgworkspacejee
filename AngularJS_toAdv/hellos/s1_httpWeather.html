@@ -1,0 +1,43 @@
+<html ng-app="httpWeatherApp">
+    <head>
+        <script src="../lib_js/angular.js"></SCRIPT>
+        <script type="text/javascript">
+            var ngMod = angular.module("httpWeatherApp",[])
+                               .controller("httpWeatherCntrl",httpWeatherCntrl);
+            function httpWeatherCntrl($http,$log){
+                var vm = this;
+                $http.get("http://api.openweathermap.org/data/2.5/forecast?zip=94040,us&appid=98d4216fa744605c7aaf3e6a9dc2ed4e")
+                     .then(function(data){
+                        $log.info(data);
+                        vm.resp = data.data.list;
+                     });
+
+                this.sample = "smaple msg";
+
+            }
+        </script>
+    </head>
+    <body ng-controller="httpWeatherCntrl as cntrl">
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                    <th>Weather</th>
+                    <th>Weather Dtls</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in cntrl.resp">
+                        <td>{{item['weather'][0].main}}</td>
+                        <td>{{item['weather'][0].description}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--
+            resp :  {{cntrl.resp[0]["weather"] | json}}
+            <pre ng-bind-html="json | prettify"></pre> 
+            -->
+
+        </div>
+    </body>
+</html>

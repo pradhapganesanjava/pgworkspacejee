@@ -1,0 +1,18 @@
+<html>
+<head>
+<script type="text/javascript">
+	function click_btnEventHandle(text) {
+		document.getElementById('action_label').innerHTML = text;
+	}
+</script>
+</head>
+<body>
+	<H1>Welcome !!!</H1>
+	<p>
+		<strong id="action_label">Please click some Button</strong>
+	</p>
+	<input type="submit" name="click1" value="click1" onclick="click_btnEventHandle('clicked 1')" />
+	<input type="submit" name="click2" value="click2" onclick="click_btnEventHandle('clicked 2');"/>
+	<input type="submit" name="click3" value="click3" onclick="click_btnEventHandle('clicked 3');"/>
+</body>
+</html>

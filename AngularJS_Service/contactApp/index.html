@@ -1,0 +1,21 @@
+<html ng-app="contactApp">
+<head>
+<script src="../js/angular.js"></script>
+<script>
+	var module = angular.module("contactApp",[]);
+	console.log(angular);
+	module.controller("contactAppCntrl",contactAppCntrlImpl);
+	
+	function contactAppCntrlImpl($scope){
+		$scope.bind1="Pradhap";
+	}
+</script>
+</head>
+
+<body ng-controller="contactAppCntrl">
+	<h1> CONTACT APP Pradhap !!</h1>
+	<HR>
+	<p ng-bind="bind1"></p>
+
+</body>
+</html>
