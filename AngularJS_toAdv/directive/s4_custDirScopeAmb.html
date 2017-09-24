@@ -1,0 +1,71 @@
+<html ng-app="myCustDirScopeAmbApp">
+    <head>
+        <script src="../lib_js/angular.js"></SCRIPT>
+        <script type="text/javascript">
+            var ngMod = angular.module("myCustDirScopeAmbApp",[])
+                               .directive("myScopedAssign",myScopedAssign)
+                               .directive("myScopedExp",myScopedExp)
+                               .directive("myScopedAttr",myScopedAttr)
+                               .directive("myLinkAttr",myLinkAttr)
+                               .controller("myCustDirScopeAmbCtrl",myCustDirScopeAmbCtrl);
+
+            function myCustDirScopeAmbCtrl($scope){
+                $scope.cntrl_scope_fname="Pradhap";
+                $scope.cntrl_scope_lname="Ganesan";
+                $scope.parentExp = function(ps){
+                    var express = "def";
+                    var retStr = "Hello... "+ps;
+                    console.log(" "+retStr);
+                    return retStr;
+                };
+            }
+            // scope values from parent 
+            function myScopedAssign(){
+                return {
+                    scope : { "assign" : "=" },
+                    template : "Hello.. {{assign}} this my custom directive with scope" } } 
+            
+            // scope expression/function call from parent
+            function myScopedExp(){
+                return {
+                    scope : { express : "&" },
+                    template : "Helloo... following exp from & scope :{{express({test})}} " } }
+            // values refer at local attributes
+            function myScopedAttr(){
+                return {
+                    scope:{ greet : '@' },
+                    template: "{{greet}} Pradhap..." } }
+
+function myLinkAttr(){
+    return {
+        link: function(scope,element,attrs){
+            scope.greet = attrs.greet;
+        },
+        template: "{{greet}} Pradhap..." } }
+            
+        </script>
+    </head>
+    <body ng-controller="myCustDirScopeAmbCtrl">
+        <div>
+            <b>my-scoped-assign:</b><br>
+            <my-scoped-assign assign="cntrl_scope_fname" ></my-scoped-assign>
+            <br><br><hr>
+
+            <b>my-scoped-exp:</b><br>
+            <my-scoped-exp express="parentExp('test')">ddd</my-scoped-exp>
+            <br><br><hr>
+
+            <b>my-scoped-attr:</b><br>
+            <my-scoped-attr greet="Hello"></my-scoped-attr>
+            <br>
+            <my-scoped-attr greet="Hola"></my-scoped-attr>
+            <br><br><hr>
+
+            <b>my-link-attr:</b><br>
+            <my-link-attr greet="Hola"></my-link-attr>
+            <br>
+            <my-link-attr greet="Hello"></my-link-attr>
+
+        </div>
+    </body>
+</html>

@@ -1,0 +1,58 @@
+<html ng-app="customFilterApp">
+    <head>
+        <script src="../lib_js/angular.js"></SCRIPT>
+        <script>
+            var customFilterMod = angular.module("customFilterApp",[])
+                                         .filter("stateDescFilter", stateDescFilter)
+                                         .controller("customFilterCntrl",customFilterCntrl);
+            
+            function customFilterCntrl($scope){
+                $scope.states = ['fl','tx','ca','nj','ga','ny'];
+            }
+            function stateDescFilter(){
+                return function(state){
+                        var stateMap =  getStateMap();
+                        for(mapInd in stateMap ){
+                            mapItem = stateMap[mapInd];
+                            if(mapItem.code.toLowerCase() === state.toLowerCase()){
+                                return mapItem.desc;
+                            }
+                        }
+                        return 'N/A';
+                    };
+            }
+            function getStateMap(){
+                var fl = new stateMap("FL","Florida");
+                var tx = new stateMap("TX","Texas");
+                var ca = new stateMap("CA","California");
+                var nj = new stateMap("NJ","NewJersey");
+                var ny = new stateMap("NY","NewYork");
+                return [fl,tx,ca,nj,ny];
+            }
+            function stateMap(code,desc){
+                this.code = code;
+                this.desc = desc;
+            }
+        </script>
+        <script src="customFilter.js"></script>
+    </head>
+    
+    <body ng-controller="customFilterCntrl">
+        <table style="border:solid 1px;padding:5px;">
+            <thead>
+                <tr>
+                    <td>State Code</td>
+                    <td>State Description</td>
+                    <td>Zipcode Range </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat = "state in states">
+                    <td>{{state}}</td>
+                    <td>{{state | stateDescFilter }}</td>
+                    <td>{{state | stateZipFilter}}</td> <!--stateZipFilter is defined in customFilter.js
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

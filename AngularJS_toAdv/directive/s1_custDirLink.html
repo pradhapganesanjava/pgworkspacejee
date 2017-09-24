@@ -1,0 +1,24 @@
+<html ng-app="myCustDirApp">
+        <head>
+            <script src="../lib_js/angular.js"></SCRIPT>
+            <script type="text/javascript">
+                var ngMod = angular.module("myCustDirApp",[])
+                                   .directive("myLinkTag",myLinkTag);
+function myLinkTag(){
+return {
+    restrict : "E",
+    template : "Hello.. this my custom directive with link",
+    link : function ($scope,element, attrs){
+                element.bind('click',function(){
+                    console.log("clicked...");
+                });
+            } } }
+                
+            </script>
+        </head>
+        <body>
+            <div>
+                <my-link-tag></my-link-tag>
+            </div>
+        </body>
+    </html>

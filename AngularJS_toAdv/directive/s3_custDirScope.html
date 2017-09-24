@@ -1,0 +1,29 @@
+<html ng-app="myCustDirLinkApp">
+        <head>
+            <script src="../lib_js/angular.js"></SCRIPT>
+            <script type="text/javascript">
+                var ngMod = angular.module("myCustDirLinkApp",[])
+                                   .directive("myScopedTag",myScopedTag);
+function myScopedTag(){
+return {
+        restrict : "E",
+        scope : {
+            name : "="
+        },
+        template : "Hello.. {{name}} this my custom directive with scope",
+        controller : function($scope){
+            $scope.cntrl_scope_fname="Pradhap";
+            $scope.cntrl_scope_lname="Ganesan";
+            $scope.name="default";
+        }
+    
+        } } 
+                
+            </script>
+        </head>
+        <body>
+            <div>
+                <my-scoped-tag name="cntrl_scope_fname" ></my-scoped-tag>
+            </div>
+        </body>
+    </html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+    <script src="app.js"></script>
+</head>
+<body ng-controller="homecntrl">
+	<nav class="navbar navbar-default">
+		<div class="container">
+			<div class="navbar-header">
+				<div class="navbar-band" href="/">
+					Routing example...
+				</div>
+				
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<a href="#">
+							<i class="fa fa-home">Home</i>
+						</a>
+					</li>
+					<li>
+						<a href="#about">
+							<i class="fa fa-shield">About</i>
+						</a>
+					</li>
+					<li>
+						<a href="#contact">
+						<i class="fa fa-comment">Contact</i>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+		<div id="main">
+			The view displays here...
+			<div ng-view></div>
+		</div>
+		
+	</nav>
+</body>
+</html>
