@@ -1,0 +1,36 @@
+<html ng-app="myCustDirApp">
+    <head>
+        <script src="../lib_js/angular.js"></SCRIPT>
+        <script type="text/javascript">
+            var ngMod = angular.module("myCustDirApp",[])
+                               .directive("myHelloTag",myHelloTag)
+                               .directive("accept-attribute",acceptAttribute)
+                               .directive("insertComment",insertComment);
+            function myHelloTag(){
+                return {
+                    restrict : "E",
+                    template : "Hello.. this my custom directive tag"
+                };
+            }
+            function insertComment(){
+                return {
+                    restrict : "M",
+                    template :"insert my comment hidden"
+                }
+            }
+            function acceptAttribute(){
+                return {
+                    restrict : "A",
+                    template :"add my attributes"
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div>
+            <insert-comment></insert-comment>
+            <my-hello-tag></my-hello-tag>
+            <p accept-attribute>Custom attributes are accepted</p>
+        </div>
+    </body>
+</html>

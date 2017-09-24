@@ -1,0 +1,18 @@
+<html ng-app="myNgApp">
+    <head>
+        <script src="../lib_js/angular.js"></SCRIPT>
+        <script type="text/javascript">
+            var ngCntrlImpl = function ($scope){
+                $scope.msgCntrl="Hellooo this msg from Controller";
+            }
+            var ngMod = angular.module("myNgApp",[]);
+            ngMod.controller("ngCntrl",ngCntrlImpl);
+            
+
+            
+        </script>
+    </head>
+    <body>
+        <div ng-controller="ngCntrl">Message from Cntrl: {{msgCntrl}}</div>
+    </body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html ng-app="plunker">
+
+  <head>
+    <meta charset="utf-8" />
+    <title>AngularJS Plunker</title>
+    <link data-require="bootstrap@*" data-semver="4.0.5" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" />
+    <script data-require="bootstrap@*" data-semver="4.0.5" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js"></script>
+    <script>document.write('<base href="' + document.location + '" />');</script>
+    <link rel="stylesheet" href="style.css" />
+    <script data-require="angular.js@1.5.x" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.10/angular.min.js" data-semver="1.5.10"></script>
+    <script src="app.js"></script>
+  </head>
+
+  <body ng-controller="MainCtrl">
+    
+    <div ng-init="myname='Nanda'">
+    <p>Hello </p>
+    <h3>{{myname}}</h3>
+    </div>
+    
+    <!--select ng-model="sortColumn">
+      <option value="name">City ASC</option>
+      <option value="main.humidity">Humidity ASC</option>
+      <option value="-coord.lat">LAT DESC</option>
+    </select-->
+    
+    <input type="text" ng-model="search" /> <br/>
+    City <input type="text" ng-model="search.name" /> <br/>
+    Humidity <input type="text" ng-model="search.main.humidity" /> <br/>
+    Desc <input type="text" ng-model="search.weather[0].description" /> <br/>
+    
+    <input type="text" ng-model="data" />
+    <h4>{{data | lowercase}}</h4>
+    
+    <table class="table table-striped table-hover">
+      <tbody>
+        <tr>
+          <th ng-click="sortData('name')">City <span ng-class="getSortClass('name')"></span></th>
+          <th ng-click="sortData('main.humidity')">Humidity <span ng-class="getSortClass('main.humidity')"></span></th>
+          <th>Description</th>
+          <th>LAT</th>
+        </tr>
+        <tr ng-repeat="info in weatherinfo | filter:search | orderBy:sortColumn:reverseSort">
+          <td>{{info.name}}</td>
+          <td>{{info.main.humidity}}</td>
+          <td>{{info.weather[0].description}}</td>
+          <td>{{info.coord.lat}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+
+</html>

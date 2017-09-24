@@ -1,0 +1,10 @@
+.def_color {
+  color: blue; }
+
+body table th {
+  background-color: black;
+  color: white; }
+
+body table td {
+  background-color: gray;
+  color: black; }

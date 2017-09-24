@@ -1,0 +1,18 @@
+<html ng-app="twoWayBind">
+    <head>
+        <script src="../lib_js/angular.js"></SCRIPT>
+        <script>
+            twoWayBindMod = angular
+                                .module("twoWayBind",[])
+                                .controller("twoWayBindCntrl",
+                                twoWayBindCntrl);
+            function twoWayBindCntrl($scope){
+                            $scope.msg="Initial msg"; }
+
+        </script>
+    </head>
+    <body ng-controller="twoWayBindCntrl">
+        <input type="text" ng-model="msg">
+        {{msg}}
+    </body>
+</html>

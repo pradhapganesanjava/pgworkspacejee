@@ -1,0 +1,43 @@
+<html ng-app="uiRouterApp">
+    <head>
+        <!-- <script src="../lib_js/angular.js"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.js"></script>
+        <script type="text/javascript">
+            var mod = angular.module("uiRouterApp",['ui.router']);
+            mod.config(function($stateProvider){
+                $stateProvider.state("home",{
+                    url : "/",
+                    template : "Welcome to UI-Router"
+                })
+                .state("existCustomer",
+                {
+                    url : "/landExistCust",
+                    template : "This is Existing Customer Page"
+                })
+            });
+            //UIRouter closure way config
+            mod.config(uiRouterConfig);
+            function uiRouterConfig($stateProvider){
+                $stateProvider.state("custProfile",
+                {
+                    url:"/custProf",
+                    template : "Set Customer Profile"
+                })
+            }
+
+            //additional config
+            mod.config(["$stateProvider",function($stateProvider){
+                $stateProvider.state("custAccounts",
+                {
+                    url:"/custAccounts",
+                    template : "Check Customer Accounts"
+                })
+            }]);
+                        
+        </script>
+    </head>
+    <body>
+        <div ui-view></div>
+    </body>
+</html>

@@ -1,0 +1,63 @@
+<html ng-app="filterApplyApp">
+    <head>
+        <script src="../lib_js/angular.js"></SCRIPT>
+        <script>
+            var filterApp = angular.module("filterApplyApp",[]).controller("filterApplyCntrl",filterApplyCntrl);
+            function filterApplyCntrl($scope){
+                $scope.emp = getEmployees();
+                $scope.rowSize = $scope.emp.length;
+                $scope.stateCodes = ['fl','tx','ca','nj','ga'];
+                console.log(" "+$scope.stateCodes.length);
+                for(st in $scope.stateCodes){
+                    console.log(st);
+                }
+            }
+            function getEmployees(){
+                var ben = new Emp("Ben",new Date("10/10/1955"),"Male","65000.002");
+                var hol = new Emp("Holly",new Date("11/11/1983"),"Female","95000.020");
+                var john = new Emp("John",new Date("11/11/1989"),"Male","55000.99");
+                var mari = new Emp("Marie",new Date("11/11/1990"),"Female","115000");
+                var sam = new Emp("Sam",new Date("11/11/1995"),"Male","125000.505");
+                return [ben,hol,john,mari,sam];
+            }
+            function Emp(name,dob,gen,sal){
+                this.name=name;
+                this.dob=dob;
+                this.gender = gen;
+                this.salary = sal;
+            }
+        </script>
+    </head>
+    <body ng-controller="filterApplyCntrl">
+        {{states}}
+        <div>
+            Reduce Number of records :
+            <select name="sadf" id="eeee" ng-model="rowSize">
+                <option ng-repeat="empItem in emp" ng-selected="{{rowSize}}">{{$index+1}}</option>
+            </select>
+        </div>
+        <div>
+            <table style="border:solid 1px; padding:5px">
+                <thead>
+                    <tr>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>DOB</th>
+                    <th>Salary Num</th>
+                    <th>Salary Curr</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="empItem in emp | limitTo:rowSize">
+                    <td>{{empItem.name | uppercase}}</td>
+                    <td>{{empItem.gender | lowercase}}</td>
+                    <td>{{empItem.dob | date:dd/MM/yyyy}}</td>
+                    <td>{{empItem.salary | number:2}}</td>
+                    <td>{{empItem.salary | currency:"Rs ":0}}</td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </body>
+</html>
