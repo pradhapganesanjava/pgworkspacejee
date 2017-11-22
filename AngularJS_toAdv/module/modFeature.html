@@ -1,0 +1,51 @@
+<html>
+<head>
+    <script src="../lib_js/angular.js"></script>
+    <script>
+var greetMod = angular.module('greet.proto',[]);
+greetMod.value("greetLang",{
+        helloLo : "Hello..",
+        nameLo : 'Undefined',            
+        greet : function(){
+            return this.helloLo+" "+this.nameLo+"!";
+        },
+        hello : function(helloP){
+            this.helloLo = helloP;
+        },
+        name : function(setName){
+            this.nameLo = setName;
+        }
+});
+
+        var greetAppMod = angular.module('greetApp',['greet.proto']);
+
+        greetAppMod.controller('enGreetAppCntrl',function($scope,greetLang){
+            greetLang.name('Pradhap');
+            $scope.greet = greetLang.greet();
+        });
+
+        greetAppMod.controller("spGreetAppCntrl",function($scope,greetLang){
+            greetLang.hello("hola");
+            greetLang.name("Pradhap");
+            $scope.greet = greetLang.greet(); 
+        });
+
+    </script>
+</head>
+
+<body>
+
+    <div ng-app="greetApp">
+<div ng-app="greetApp" ng-controller="enGreetAppCntrl">
+        English Module Greet : {{greet}}
+</div>
+        <br><hr>
+        <div ng-controller="spGreetAppCntrl">
+            Spanish Module Overriden Greet : {{greet}}
+        </div>
+        <br><hr>
+    </div>
+
+</body>
+
+</html>
