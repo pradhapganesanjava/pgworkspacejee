@@ -1,0 +1,22 @@
+<html ng-app="watchApp">
+        <head>
+            <script type="text/javascript" src="../../lib_js/angular.js"></script>
+            <script type="text/javascript">
+              var ngMod = angular.module("watchApp",[]);
+              ngMod.controller("watchCntrl", function($scope){
+                $scope.countModName = -1;
+                $scope.$watch("name",function(oldv,newv){
+                    console.log('oldv: '+oldv+' newv: '+newv);
+                    $scope.countModName++;
+                })
+
+              });
+            </script>
+        </head>
+        <body>
+<div ng-controller = "watchCntrl">
+        <input type="text" ng-model="name"></input>
+        <p> number of times updated: {{countModName}}</p>
+</div>
+        </body>
+    </html>

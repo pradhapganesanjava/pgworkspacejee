@@ -1,0 +1,26 @@
+<html ng-app="digestApp">
+        <head>
+            <script type="text/javascript" src="../../lib_js/angular.js"></script>
+            <script type="text/javascript">
+              var ngMod = angular.module("digestApp",[]);
+                ngMod.controller("digestCntrl", function($scope){
+                $scope.randNum = Math.random();
+                $scope.genRand = function(){
+                    $scope.randNum = Math.random();
+                }
+                document.querySelector('input').addEventListener("click",function(){
+                    console.log("clicked");
+                    $scope.randNum = Math.random();
+                    $scope.$digest();
+                },false);
+                });
+            </script>
+        </head>
+        <body>
+            <div ng-controller = "digestCntrl">
+                    <p>New Random Number: {{randNum}}</p>
+                    <!-- <input type="button" name="genRand" value="Generate new Random" ng-click="genRand()"/> -->
+                    <input type="button" name="genRand" value="Generate new Random"/>
+            </div>
+        </body>
+    </html>

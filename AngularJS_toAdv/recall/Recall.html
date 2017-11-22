@@ -1,0 +1,44 @@
+<html ng-app="recall">
+    <head>
+        <script type="text/javascript" src="../lib_js/angular.js"></script>
+        <script type="text/javascript">
+          var ngMod = angular.module("recall",[]);
+          ngMod.controller("recallCntrl", function($scope){
+            $scope.dude="Pradhap G !!";
+            console.log("recallCntrl called");
+          });
+
+        //   ngMod.directive("myDir",function(){
+        //         return {
+        //             restrict:"E",
+        //             template:"Hello G.. super G"
+        //             //templateUrl:"myHtmlDir.html"
+        //         }
+        //   });
+        //   ngMod.directive("myDir2",function(){
+        //         return {
+        //             restrict:"E",
+        //             template:"Hello G2.. super G2"
+        //             //templateUrl:"myHtmlDir.html"
+        //         }
+        //   });
+          ngMod.directive("myExtfileDir",function(){
+            return{
+                restrict:"E",
+                templateUrl:'./myHtmlDir.html'
+            }
+          });
+        </script>
+    </head>
+    <body>
+        <div ng-controller = "recallCntrl">
+              <h1> Hello {{dude}} </h1>
+
+              <my-dir />
+              <my-dir2 />
+              <my-extfile-dir/>
+
+            
+        </div>
+    </body>
+</html>

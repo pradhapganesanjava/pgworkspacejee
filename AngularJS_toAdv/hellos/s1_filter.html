@@ -1,0 +1,21 @@
+<html>
+    <head>
+    <script type="text/javascript" src="../lib_js/angular.js"></script>
+    <script>
+        var mod = angular.module("s1Filt",[]);
+        mod.filter("greet",function(){
+            return function(name){
+                return 'Hello... '+name+" !";
+            };
+        });
+
+    </script>
+    </head>
+
+    <body>
+        <div ng-app="s1Filt">
+            {{"Pradhap" | greet}}       
+        </div>
+    </body>
+</html>
+
